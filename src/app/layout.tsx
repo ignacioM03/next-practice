@@ -17,8 +17,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
-      <body className="container mx-auto">
+    <html lang="en" className="white">
+      <body className="container mx-auto bg-white">
       <Navbar /> 
       {children}
         {/* <Providers>

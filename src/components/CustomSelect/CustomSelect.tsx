@@ -58,12 +58,12 @@ export default function CustomSelect() {
     }
   };
   return (
-    <div className="p-4">
+    <div className="">
       <Select
         items={CustomSelectProps}
-        label="Choose your charge"
-        placeholder="Select"
-        className="max-w-xs mb-8 bg-slate-700 p-4"
+        label=""
+        placeholder="Choose your charge"
+        className="max-w-xs mb-8 bg-slate-700 p-4 pb-20"
         onChange={onChange}
       >
         {CustomSelectProps.map((custom) => (

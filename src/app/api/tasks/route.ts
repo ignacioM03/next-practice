@@ -12,7 +12,7 @@ export async function POST(request: Request) {
     data: {
       title: body.title,
       description: body?.description,
-      status: body?.status,
+      status: body?.status ? "pending" : "completed",
       type: body?.type,
     },
   });

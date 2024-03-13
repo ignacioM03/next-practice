@@ -3,13 +3,12 @@ import Link from "next/link";
 
 //import TaskTable from "@/components/Table/Table";
 async function fetchTasks() {
-  const res = await fetch("http://localhost:3000/api/tasks",{
+  const res = await fetch("http://localhost:3000/api/tasks", {
     cache: "no-store",
   });
   const data = await res.json();
   return data.tasks;
 }
-
 
 export default async function TasksPage() {
   const tasks = await fetchTasks();
@@ -18,13 +17,8 @@ export default async function TasksPage() {
       <div className="flex justify-center text-white mb-6 mt-6 text-3xl font-bold">
         Tasks Page
       </div>
-      <Link
-        href="/tasks/new"
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded  mb-5"
-      >
-        Add new task
-      </Link>
-      <TableCustom data={tasks}/>
+
+      <TableCustom data={tasks} key={tasks.id} />
     </>
   );
 }

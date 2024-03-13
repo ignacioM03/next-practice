@@ -20,14 +20,17 @@ export async function GET(request: any, { params }: { params: Params }) {
   }
   return NextResponse.json({ success: true, data: res }, { status: 200 });
 }
-export function PATCH(request: any, { params }: { params: Params }) {
-  const body = request.body;
-  const res = prisma.task.update({
+export async function PUT(request: any, { params }: { params: Params }) {
+  const body = await request.json();
+  const { title, description, type } = body;
+  const res = await prisma.task.update({
     where: {
       id: Number(params.id),
     },
     data: {
-      ...body,
+      title,
+      description,
+      type,
     },
   });
   if (!res) {
