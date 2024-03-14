@@ -4,17 +4,17 @@ export default function LocationPage({ params }: any) {
   const { id } = params;
   const [data, setData] = useState([]);
   useEffect(() => {
-      fetch(`/api/locations/${params.id}`)
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-          setData(data); // Update component state with fetched data
-        })
-        .catch((error) => {
-          console.error("Error fetching task data:", error);
-        });
-    }, []);
-    console.log(data);
+    fetch(`/api/locations/${params.id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setData(data); // Update component state with fetched data
+      })
+      .catch((error) => {
+        console.error("Error fetching task data:", error);
+      });
+  }, []);
+  console.log(data);
   return (
     <>
       <section className="bg-white">
@@ -24,9 +24,7 @@ export default function LocationPage({ params }: any) {
               {data?.name}
             </h2>
 
-            <p className="mt-4 text-gray-500 sm:text-xl">
-              {data?.type}
-            </p>
+            <p className="mt-4 text-gray-500 sm:text-xl">{data?.type}</p>
           </div>
 
           <div className="mt-8 sm:mt-12">

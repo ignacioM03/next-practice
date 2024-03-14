@@ -10,6 +10,8 @@ async function fetchTasks() {
   return data.tasks;
 }
 
+
+
 export default async function TasksPage() {
   const tasks = await fetchTasks();
   return (
@@ -18,7 +20,7 @@ export default async function TasksPage() {
         Tasks Page
       </div>
 
-      <TableCustom data={tasks} key={tasks.id} />
+      <TableCustom data={tasks}  />
     </>
   );
 }

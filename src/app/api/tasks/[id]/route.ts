@@ -2,7 +2,7 @@ import { prisma } from "@/libs/prisma/prisma";
 import { NextResponse } from "next/server";
 
 interface Params {
-  id: number;
+  id: any;
 }
 
 export async function GET(request: any, { params }: { params: Params }) {
@@ -10,6 +10,9 @@ export async function GET(request: any, { params }: { params: Params }) {
   // const name = searchParams.get("name");
   // const lastName = searchParams.get("lastName");
   //const data = await request.json();
+  if (params.id === "undefined") {
+    return NextResponse.json({ error: "Failed to find task" }, { status: 404 });
+  }
   const res = await prisma.task.findUnique({
     where: {
       id: Number(params.id),

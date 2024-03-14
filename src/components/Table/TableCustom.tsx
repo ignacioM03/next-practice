@@ -81,14 +81,16 @@ export const TableCustom = ({ data }: any) => {
                 Type
               </th>
               <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                Load Date
+              </th>
+              <th className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                 Actions
               </th>
             </tr>
           </thead>
 
-          <tbody className="divide-y divide-gray-200">
-            {data.map((item: any) => (
-              <>
+          {data.map((item: any) => (
+              <tbody className="divide-y divide-gray-200" key={item.id}>
                 <tr key={item.id}>
                   <td className="px-4 py-2 text-center">
                     <label className="sr-only" htmlFor="Row1">
@@ -102,7 +104,6 @@ export const TableCustom = ({ data }: any) => {
                       onChange={() => {
                         setId([...id, item.id]);
                       }}
-                      
                     />
                   </td>
                   <td className="whitespace-nowrap px-4 py-2 text-gray-700 text-center">
@@ -116,6 +117,9 @@ export const TableCustom = ({ data }: any) => {
                   </td>
                   <td className="whitespace-nowrap px-4 py-2 text-gray-700 text-center">
                     {item.type}
+                  </td>
+                  <td className="whitespace-nowrap px-4 py-2 text-gray-700 text-center">
+                    {item.loadDate}
                   </td>
                   <td className="whitespace-nowrap px-4 py-2 text-center">
                     <div className=" flex justify-center">
@@ -138,9 +142,8 @@ export const TableCustom = ({ data }: any) => {
                     </div>
                   </td>
                 </tr>
-              </>
-            ))}
-          </tbody>
+              </tbody>
+          ))}
         </table>
       </div>
       <div className="rounded-b-lg border-t border-gray-200 px-4 py-2 mt-10">

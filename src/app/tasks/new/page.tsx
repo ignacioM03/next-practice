@@ -18,6 +18,7 @@ export default function NewTaskPage({ params }: any) {
         console.error("Error fetching task data:", error);
       });
   }, []);
+  console.log(taskData);
   const onSubmit = async (e: any) => {
     e.preventDefault();
     if (id) {
@@ -27,13 +28,12 @@ export default function NewTaskPage({ params }: any) {
           title: e.target.title.value,
           description: e.target.description.value,
           type: e.target.type.value,
+          loadDate: new Date(),
         }),
         headers: {
           "Content-Type": "application/json",
         },
       });
-      router.refresh();
-      router.push("/tasks");
     } else {
       const res = await fetch("http://localhost:3000/api/tasks", {
         method: "POST",
@@ -41,14 +41,14 @@ export default function NewTaskPage({ params }: any) {
           title: e.target.title.value,
           description: e.target.description.value,
           type: e.target.type.value,
+          loadDate: new Date(),
+          status: "pending",
         }),
         headers: {
           "Content-Type": "application/json",
         },
       });
       const data = await res.json();
-      router.refresh();
-      router.push("/tasks");
     }
   };
   return (
@@ -101,36 +101,45 @@ export default function NewTaskPage({ params }: any) {
                   id="type"
                   required
                 >
-                  <option value="HOME">home</option>
-                  <option value="WORK">work</option>
-                  <option value="OTHER">other</option>
+                  <option value="HOME">Home</option>
+                  <option value="WORK">Work</option>
+                  <option value="SPORT">Sport</option>
                 </select>
+              </div>
+              <div className="">
+                <label>fecha de Carga</label>
+                <input
+                  type="date"
+                  className="border border-gray-400 p-2 rounded-md mb-4 w-full text-black"
+                  placeholder="fehca de carga"
+                  required
+                />
               </div>
               <button
                 type="submit"
                 className="btn-primary bg-slate-700 rounded-md w-full p-2 text-white"
                 onClick={() => {
+                  router.refresh();
                   router.push("/tasks");
                 }}
               >
-                Edit Task
+                Create Task
               </button>
             </>
           ) : (
             <>
               <div className="">
-                <label>Title</label>
+                <label>Nombre de la tarea</label>
                 <input
                   type="text"
                   className="border border-gray-400 p-2 rounded-md mb-4 w-full text-black"
                   placeholder="title"
                   required
                   id="title"
-                  value={taskData?.title}
                 />
               </div>
               <div className="">
-                <label>description</label>
+                <label>Descripcion </label>
                 <textarea
                   cols={30}
                   rows={10}
@@ -140,17 +149,26 @@ export default function NewTaskPage({ params }: any) {
                 ></textarea>
               </div>
               <div className="">
-                <label htmlFor="">Type</label>
+                <label htmlFor="">Tipo</label>
                 <select
                   className="border border-gray-400 p-2 mb-4 w-full rounded-md text-black"
                   name="type"
                   id="type"
                   required
                 >
-                  <option value="HOME">home</option>
-                  <option value="WORK">work</option>
-                  <option value="OTHER">other</option>
+                  <option value="HOME">Home</option>
+                  <option value="WORK">Work</option>
+                  <option value="SPORT">Sport</option>
                 </select>
+              </div>
+              <div className="">
+                <label>fecha de Carga</label>
+                <input
+                  type="date"
+                  className="border border-gray-400 p-2 rounded-md mb-4 w-full text-black"
+                  placeholder="fehca de carga"
+                  required
+                />
               </div>
               <button
                 type="submit"

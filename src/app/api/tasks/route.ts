@@ -14,6 +14,7 @@ export async function POST(request: Request) {
       description: body?.description,
       status: body?.status ? "pending" : "completed",
       type: body?.type,
+      loadDate: new Date(),
     },
   });
   if (!task) {
